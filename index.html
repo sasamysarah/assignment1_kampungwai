@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kamarulzaman – Kayak Guide | Kampung Wai, Perlis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --emerald:        #2d8c6e;
+      --emerald-light:  #3eaf8a;
+      --emerald-pale:   #a8d8c8;
+      --mangrove:       #1a4a38;
+      --mangrove-dark:  #0d2a20;
+      --gold:           #c8a84b;
+      --gold-light:     #e8cc78;
+      --gold-pale:      #f7edcf;
+      --limestone:      #8fa8a0;
+      --limestone-pale: #d8e8e4;
+      --sky:            #7eb8c9;
+      --sand:           #f0ebe0;
+      --sand-dark:      #e0d8c8;
+      --white:          #ffffff;
+      --dark:           #0d1a16;
+      --text:           #1e3028;
+      --text-muted:     #4a6858;
+      --border:         rgba(45,140,110,0.18);
+      --shadow:         0 10px 45px rgba(26,74,56,0.15);
+      --font-display:   'Playfair Display', Georgia, serif;
+      --font-body:      'DM Sans', Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── TOPBAR NAV ─────────────────────────────── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: 64px;
+      background: rgba(13,26,22,0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(62,175,138,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+    }
+    .topbar-brand {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 3px;
+    }
+    .topbar-brand span { color: var(--gold); }
+    .topbar-pills {
+      display: flex;
+      gap: 4px;
+    }
+    .topbar-pill {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: 100px;
+      border: 1px solid transparent;
+      background: none;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      font-family: var(--font-body);
+    }
+    .topbar-pill:hover { color: var(--gold-light); border-color: rgba(200,168,75,0.4); background: rgba(200,168,75,0.07); }
+    .topbar-pill.active { color: var(--gold-light); border-color: rgba(200,168,75,0.6); background: rgba(200,168,75,0.12); }
+    .nav-toggle { display: none; color: var(--white); font-size: 1.4rem; cursor: pointer; background: none; border: none; }
+
+    @media (max-width: 768px) {
+      .topbar { padding: 0 18px; }
+      .topbar-pills { display: none; }
+      .topbar-pills.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--mangrove-dark);
+        padding: 10px 0;
+        gap: 0;
+      }
+      .topbar-pills.open .topbar-pill { border-radius: 0; padding: 13px 20px; font-size: 0.88rem; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .nav-toggle { display: block; }
+    }
+
+    /* ── SECTION PAGE SYSTEM ─────────────────────── */
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding-top: 64px;
+      animation: pageIn 0.45s ease both;
+    }
+    .page.active { display: block; }
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── BOTTOM NAVIGATOR ───────────────────────── */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 900;
+      background: rgba(13,26,22,0.96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(62,175,138,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      height: 64px;
+    }
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 7px 18px;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      font-family: var(--font-body);
+    }
+    .nav-btn:hover { color: var(--gold-light); border-color: rgba(200,168,75,0.5); background: rgba(200,168,75,0.08); }
+    .nav-btn:disabled { opacity: 0.2; cursor: default; }
+    .nav-btn:disabled:hover { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.12); background: none; }
+
+    .page-indicator {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .page-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .page-dot.active { background: var(--gold); transform: scale(1.4); }
+    .page-label {
+      font-size: 0.69rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      display: none;
+    }
+
+    @media (max-width: 560px) {
+      .bottom-nav { padding: 10px 16px; }
+      .nav-btn { padding: 6px 12px; font-size: 0.7rem; }
+      .page-dot { width: 6px; height: 6px; }
+    }
+
+    /* ── SHARED HELPERS ─────────────────────────── */
+    .section-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      padding: 5px 15px;
+      border: 1px solid var(--emerald);
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    .section-tag.light { color: var(--gold-light); border-color: rgba(232,204,120,0.5); }
+    .section-tag.center { display: block; text-align: center; }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      color: var(--mangrove-dark);
+      line-height: 1.2;
+    }
+    .section-title.center { text-align: center; }
+    .section-title.light { color: var(--white); }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--mangrove-dark);
+      padding: 13px 36px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      box-shadow: 0 6px 24px rgba(200,168,75,0.4);
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-body);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(200,168,75,0.5); }
+
+    .btn-outline-white {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.7);
+      padding: 12px 30px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline-white:hover { border-color: var(--gold); color: var(--gold); }
+
+    .section-divider {
+      height: 4px;
+      background: linear-gradient(to right, var(--mangrove-dark), var(--emerald), var(--gold), var(--emerald), var(--mangrove-dark));
+    }
+
+    /* ════════════════════════════════════════════
+       PAGE 1 — HOME
+    ════════════════════════════════════════════ */
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 64px);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 80px 48px 120px;
+      background: linear-gradient(150deg, var(--mangrove-dark) 0%, var(--mangrove) 38%, var(--emerald) 72%, #29a07c 100%);
+    }
+    .hero-ripple-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.07);
+      animation: rippleOut 8s ease-out infinite;
+    }
+    .ripple:nth-child(1) { width: 500px; height: 500px; bottom: -120px; left: 5%;  animation-delay: 0s; }
+    .ripple:nth-child(2) { width: 700px; height: 700px; bottom: -200px; left: 25%; animation-delay: -2.5s; opacity: 0.5; }
+    .ripple:nth-child(3) { width: 900px; height: 900px; bottom: -320px; right: 0%;  animation-delay: -5s;   opacity: 0.3; }
+    .ripple:nth-child(4) { width: 350px; height: 350px; bottom: -70px;  right: 18%; animation-delay: -3.5s; opacity: 0.6; }
+    @keyframes rippleOut {
+      0%   { transform: scale(0.55); opacity: 0.6; }
+      100% { transform: scale(1.5);  opacity: 0; }
+    }
+    .limestone-sil {
+      position: absolute; bottom: 0;
+      width: 260px; height: 340px;
+      opacity: 0.08; pointer-events: none;
+    }
+    .limestone-sil.left  { left: 0; }
+    .limestone-sil.right { right: 0; transform: scaleX(-1); }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; max-width: 720px;
+      animation: fadeUp 0.9s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow {
+      font-size: 0.76rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; flex: 1; max-width: 55px;
+      height: 1px; background: var(--gold); opacity: 0.5;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      color: var(--white); line-height: 1.07;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.35);
+    }
+    .hero-title em { color: var(--gold-light); font-style: italic; font-weight: 400; }
+    .hero-subtitle { font-size: 0.97rem; color: rgba(255,255,255,0.6); margin-bottom: 28px; }
+
+    .hero-badges { display: flex; gap: 9px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+    .badge {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 0.77rem; letter-spacing: 0.04em;
+    }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .hero-btn-nav {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--mangrove-dark);
+      padding: 13px 36px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      box-shadow: 0 6px 24px rgba(200,168,75,0.4);
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-body);
+    }
+    .hero-btn-nav:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* STATS */
+    .stats-section { background: var(--dark); padding: 56px 48px; text-align: center; }
+    .stats-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      max-width: 860px; margin: 0 auto;
+      border: 1px solid rgba(62,175,138,0.12);
+      border-radius: 14px; overflow: hidden;
+    }
+    .stat-card {
+      padding: 32px 20px;
+      border-right: 1px solid rgba(62,175,138,0.12);
+      transition: background 0.3s;
+    }
+    .stat-card:last-child { border-right: none; }
+    .stat-card:hover { background: rgba(62,175,138,0.06); }
+    .stat-number { display: block; font-family: var(--font-display); font-size: 2.6rem; color: var(--emerald-light); line-height: 1; }
+    .stat-number sup { font-size: 1rem; }
+    .stat-desc { display: block; font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 6px; }
+    @media (max-width: 640px) { .stats-grid { grid-template-columns: repeat(2,1fr); } .stats-section { padding: 46px 18px; } }
+
+    /* QUICK INFO STRIP */
+    .village-strip {
+      background: var(--mangrove);
+      padding: 30px 48px;
+      display: flex; align-items: center; gap: 18px;
+    }
+    .strip-line { flex-shrink: 0; width: 3px; height: 68px; background: linear-gradient(to bottom, var(--gold), transparent); border-radius: 2px; }
+    .village-strip p { font-family: var(--font-display); font-size: clamp(0.95rem, 2vw, 1.2rem); color: rgba(255,255,255,0.7); font-style: italic; line-height: 1.55; }
+    .village-strip p strong { color: var(--gold-light); font-style: normal; }
+    @media (max-width: 600px) {
+      .village-strip { padding: 24px 18px; flex-direction: column; }
+      .strip-line { width: 55px; height: 3px; }
+    }
+
+    /* WELCOME */
+    .welcome-section {
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      max-width: 1100px; margin: 0 auto;
+      gap: 56px; padding: 72px 48px; align-items: center;
+    }
+    .kw-illustration {
+      background: linear-gradient(135deg, var(--mangrove-dark), var(--mangrove));
+      border-radius: 22px; padding: 38px 28px; text-align: center;
+      border: 1px solid rgba(62,175,138,0.18);
+    }
+    .kw-icon-big { font-size: 4rem; display: block; margin-bottom: 14px; }
+    .kw-caption { font-family: var(--font-display); color: var(--white); font-size: 1rem; margin-bottom: 22px; line-height: 1.4; }
+    .kw-caption strong { display: block; font-size: 1.35rem; color: var(--gold-light); margin-bottom: 3px; }
+    .kw-facts { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .kw-fact { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(62,175,138,0.14); }
+    .kw-fact span { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--emerald-light); font-weight: 700; }
+    .kw-fact { font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
+
+    .welcome-text-col h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: var(--mangrove-dark); margin-bottom: 16px; line-height: 1.2; }
+    .welcome-text-col p { color: var(--text-muted); font-size: 0.91rem; margin-bottom: 14px; }
+    .btn-outline-green {
+      display: inline-block;
+      color: var(--emerald);
+      border-bottom: 2px solid var(--emerald);
+      padding-bottom: 3px;
+      font-weight: 500; font-size: 0.88rem;
+      transition: color 0.3s, border-color 0.3s;
+      cursor: pointer;
+      background: none; border-left: none; border-top: none; border-right: none;
+      font-family: var(--font-body);
+    }
+    .btn-outline-green:hover { color: var(--gold); border-color: var(--gold); }
+    @media (max-width: 768px) { .welcome-section { grid-template-columns: 1fr; padding: 48px 18px; gap: 32px; } }
+
+    /* ════════════════════════════════════════════
+       PAGE 2 — ABOUT
+    ════════════════════════════════════════════ */
+    .page-header {
+      background: linear-gradient(135deg, var(--mangrove-dark) 0%, var(--mangrove) 60%, #1e5c44 100%);
+      padding: 56px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -40%; right: -10%;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(62,175,138,0.12), transparent 70%);
+      border-radius: 50%;
+    }
+    .page-header-inner { position: relative; z-index: 1; max-width: 680px; }
+    .page-header h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); color: var(--white); line-height: 1.1; margin-bottom: 12px; }
+    .page-header p { color: rgba(255,255,255,0.55); font-size: 0.93rem; max-width: 500px; }
+
+    /* PROFILE CARD */
+    .profile-section { padding: 56px 48px; max-width: 1100px; margin: 0 auto; }
+    .profile-card {
+      background: linear-gradient(135deg, var(--mangrove-dark), #1f5a42);
+      border-radius: 20px; padding: 36px; border: 1px solid rgba(62,175,138,0.2);
+      display: flex; align-items: center; gap: 32px;
+      margin-bottom: 48px;
+    }
+    .profile-avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: rgba(62,175,138,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; flex-shrink: 0;
+      border: 2px solid rgba(62,175,138,0.3);
+    }
+    .profile-card h3 { font-family: var(--font-display); font-size: 1.6rem; color: var(--white); margin-bottom: 6px; }
+    .profile-role { font-size: 0.83rem; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+    .profile-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .profile-tag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.7);
+      padding: 4px 13px; border-radius: 100px;
+      font-size: 0.77rem;
+    }
+    @media (max-width: 600px) { .profile-card { flex-direction: column; text-align: center; } .profile-tags { justify-content: center; } }
+
+    .about-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .about-card {
+      background: var(--sand); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 24px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .about-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .about-card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .about-card h3 { font-family: var(--font-display); font-size: 1.05rem; color: var(--mangrove); margin-bottom: 10px; }
+    .about-card p { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 10px; }
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } .profile-section { padding: 40px 18px; } }
+
+    /* TIMELINE */
+    .timeline-section {
+      background: var(--sand); padding: 68px 48px;
+    }
+    .timeline-inner { text-align: center; margin-bottom: 48px; }
+    .timeline { max-width: 680px; margin: 0 auto; position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute; top: 0; bottom: 0;
+      left: 50%; width: 2px;
+      background: linear-gradient(to bottom, var(--emerald), var(--gold), var(--emerald));
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: flex; position: relative;
+      margin-bottom: 32px;
+    }
+    .timeline-item.left { flex-direction: row; text-align: right; justify-content: flex-start; }
+    .timeline-item.right { flex-direction: row-reverse; text-align: left; justify-content: flex-start; }
+    .timeline-dot {
+      position: absolute; left: 50%; top: 20px;
+      width: 13px; height: 13px;
+      background: var(--gold); border-radius: 50%;
+      transform: translateX(-50%);
+      border: 3px solid var(--sand);
+      box-shadow: 0 0 0 2px var(--gold);
+      z-index: 2;
+    }
+    .timeline-content { width: 44%; padding: 18px 20px; background: var(--white); border-radius: 12px; border: 1px solid var(--border); }
+    .timeline-item.left  .timeline-content { margin-right: auto; }
+    .timeline-item.right .timeline-content { margin-left: auto; }
+    .timeline-year { display: block; font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--emerald); font-weight: 500; margin-bottom: 5px; }
+    .timeline-content p { font-size: 0.83rem; color: var(--text-muted); }
+    @media (max-width: 600px) {
+      .timeline::before { left: 12px; }
+      .timeline-item, .timeline-item.left, .timeline-item.right { flex-direction: row; text-align: left; }
+      .timeline-dot { left: 12px; }
+      .timeline-content { width: 82%; margin-left: auto !important; }
+      .timeline-section { padding: 48px 18px; }
+    }
+
+    /* ════════════════════════════════════════════
+       PAGE 3 — KAMPUNG WAI
+    ════════════════════════════════════════════ */
+    .highlights-section {
+      padding: 60px 48px; max-width: 1100px; margin: 0 auto;
+    }
+    .highlights-intro { color: var(--text-muted); max-width: 640px; font-size: 0.91rem; margin-bottom: 42px; }
+    .highlight-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .hl-card {
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      background: var(--white); transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hl-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .hl-card-top {
+      background: linear-gradient(135deg, var(--mangrove-dark), var(--mangrove));
+      padding: 22px; text-align: center; font-size: 2.2rem;
+    }
+    .hl-card-body { padding: 22px; }
+    .hl-card-body h3 { font-family: var(--font-display); font-size: 1rem; color: var(--mangrove); margin-bottom: 10px; }
+    .hl-card-body p { font-size: 0.83rem; color: var(--text-muted); }
+    @media (max-width: 900px) { .highlight-cards { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .highlight-cards { grid-template-columns: 1fr; } .highlights-section { padding: 40px 18px; } }
+
+    .deep-dive-section {
+      background: var(--sand); padding: 68px 48px;
+    }
+    .deep-dive-inner { max-width: 1060px; margin: 0 auto; }
+    .deep-dive-intro { color: var(--text-muted); font-size: 0.91rem; max-width: 640px; margin-bottom: 42px; }
+    .deep-blocks { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .deep-block {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .deep-block:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .deep-block-icon { font-size: 1.8rem; margin-bottom: 11px; }
+    .deep-block h3 { font-family: var(--font-display); font-size: 1.05rem; color: var(--mangrove); margin-bottom: 9px; }
+    .deep-block p { font-size: 0.84rem; color: var(--text-muted); }
+    @media (max-width: 640px) { .deep-blocks { grid-template-columns: 1fr; } .deep-dive-section { padding: 48px 18px; } }
+
+    /* ════════════════════════════════════════════
+       PAGE 4 — ROLE & CONTRIBUTION
+    ════════════════════════════════════════════ */
+    .role-section { padding: 60px 48px; max-width: 1100px; margin: 0 auto; }
+    .role-intro { max-width: 640px; margin-bottom: 44px; }
+    .role-intro h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3.5vw, 2.5rem); color: var(--mangrove-dark); line-height: 1.2; margin: 12px 0 14px; }
+    .role-intro p { color: var(--text-muted); font-size: 0.91rem; }
+    .role-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .role-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 30px 26px;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .role-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(to bottom, var(--emerald), var(--gold));
+    }
+    .role-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .role-num { font-family: var(--font-display); font-size: 3rem; color: rgba(45,140,110,0.08); line-height: 1; margin-bottom: 8px; font-weight: 700; }
+    .role-card h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--mangrove); margin-bottom: 10px; }
+    .role-card p { font-size: 0.85rem; color: var(--text-muted); }
+    @media (max-width: 640px) { .role-cards { grid-template-columns: 1fr; } .role-section { padding: 40px 18px; } }
+
+    .contrib-section { padding: 68px 48px; background: var(--sand); }
+    .contrib-inner { max-width: 1060px; margin: 0 auto; }
+    .contrib-blocks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 42px; }
+    .contrib-block {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 30px 26px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .contrib-block-dark {
+      background: linear-gradient(135deg, var(--mangrove-dark), var(--mangrove));
+      border-color: transparent;
+    }
+    .contrib-block:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .contrib-icon { font-size: 1.9rem; margin-bottom: 12px; }
+    .contrib-block h3 { font-family: var(--font-display); font-size: 1.08rem; color: var(--mangrove); margin-bottom: 10px; }
+    .contrib-block-dark h3 { color: var(--gold-light); }
+    .contrib-block p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 8px; }
+    .contrib-block-dark p { color: rgba(255,255,255,0.6); }
+    @media (max-width: 640px) { .contrib-blocks { grid-template-columns: 1fr; } .contrib-section { padding: 48px 18px; } }
+
+    /* ════════════════════════════════════════════
+       PAGE 5 — PACKAGES
+    ════════════════════════════════════════════ */
+    .packages-section {
+      background: linear-gradient(150deg, var(--mangrove-dark) 0%, var(--mangrove) 50%, var(--emerald) 100%);
+      padding: 60px 48px;
+    }
+    .packages-inner { max-width: 920px; margin: 0 auto; text-align: center; }
+    .section-intro { color: rgba(255,255,255,0.55); font-size: 0.91rem; max-width: 520px; margin: 12px auto 44px; }
+    .packages-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; text-align: left; }
+    .pkg-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 20px; padding: 32px 28px;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .pkg-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .pkg-featured {
+      background: rgba(200,168,75,0.1);
+      border-color: rgba(200,168,75,0.4);
+    }
+    .pkg-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .pkg-card h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--white); margin-bottom: 6px; }
+    .pkg-price { margin-bottom: 14px; }
+    .pkg-price-main { font-family: var(--font-display); font-size: 2rem; color: var(--gold-light); }
+    .pkg-price-sub { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+    .pkg-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+    .pkg-features { display: flex; flex-direction: column; gap: 7px; }
+    .pkg-feature { font-size: 0.82rem; color: rgba(255,255,255,0.65); display: flex; gap: 8px; align-items: flex-start; }
+    .pkg-feature::before { content: '✓'; color: var(--emerald-light); flex-shrink: 0; font-weight: 600; }
+    .pkg-badge {
+      position: absolute; top: 20px; right: 20px;
+      background: var(--gold); color: var(--mangrove-dark);
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+    }
+    @media (max-width: 640px) { .packages-grid { grid-template-columns: 1fr; } .packages-section { padding: 48px 18px; } }
+
+    /* HOURS */
+    .hours-banner {
+      background: var(--dark);
+      display: flex; align-items: stretch; flex-wrap: wrap;
+    }
+    .hours-item { flex: 1; min-width: 160px; padding: 28px 24px; text-align: center; }
+    .hours-item h3 { font-family: var(--font-display); font-size: 0.95rem; color: var(--gold-light); margin-bottom: 5px; }
+    .hours-item p { font-size: 0.83rem; color: rgba(255,255,255,0.5); }
+    .hours-divider { width: 1px; background: rgba(62,175,138,0.12); }
+
+    /* BOOKING INFO */
+    .booking-section { padding: 60px 48px; max-width: 820px; margin: 0 auto; }
+    .booking-section h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--mangrove-dark); margin-bottom: 14px; }
+    .booking-section > p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 32px; }
+    .booking-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+    .booking-card {
+      background: var(--sand); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px;
+    }
+    .booking-card h4 { font-family: var(--font-display); font-size: 0.95rem; color: var(--mangrove); margin-bottom: 8px; }
+    .booking-card p { font-size: 0.83rem; color: var(--text-muted); }
+    @media (max-width: 560px) { .booking-cards { grid-template-columns: 1fr; } .booking-section { padding: 40px 18px; } }
+
+    /* ════════════════════════════════════════════
+       PAGE 6 — CONTACT / CTA
+    ════════════════════════════════════════════ */
+    .cta-hero {
+      background: linear-gradient(150deg, var(--dark) 0%, var(--mangrove-dark) 100%);
+      padding: 72px 48px;
+      text-align: center;
+    }
+    .cta-hero h2 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); color: var(--white); margin-bottom: 14px; }
+    .cta-hero p { color: rgba(255,255,255,0.45); max-width: 460px; margin: 0 auto 34px; font-size: 0.9rem; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .contact-section { padding: 60px 48px; max-width: 900px; margin: 0 auto; }
+    .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .contact-card {
+      background: var(--sand); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 22px; text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .contact-icon { font-size: 2rem; margin-bottom: 12px; }
+    .contact-card h3 { font-family: var(--font-display); font-size: 1rem; color: var(--mangrove); margin-bottom: 6px; }
+    .contact-card p { font-size: 0.83rem; color: var(--text-muted); }
+    @media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } .contact-section { padding: 40px 18px; } }
+
+    .map-section { padding: 0 48px 56px; max-width: 900px; margin: 0 auto; }
+    .map-embed {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border);
+      height: 320px; background: var(--sand);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; color: var(--text-muted); font-style: italic;
+    }
+    @media (max-width: 560px) { .map-section { padding: 0 18px 40px; } }
+
+    /* FOOTER */
+    .footer { background: var(--dark); padding: 52px 48px 32px; }
+    .footer-inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 2fr 1fr;
+      gap: 40px; padding-bottom: 30px;
+      border-bottom: 1px solid rgba(62,175,138,0.1);
+    }
+    .footer-brand { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); letter-spacing: 3px; }
+    .footer-brand span { color: var(--gold); }
+    .footer-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.32); margin-top: 7px; line-height: 1.6; }
+    .footer-col h4 { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--emerald-light); margin-bottom: 10px; }
+    .footer-col p { font-size: 0.81rem; color: rgba(255,255,255,0.38); line-height: 1.7; }
+    .footer-links { display: flex; flex-direction: column; gap: 7px; }
+    .footer-link-btn {
+      font-size: 0.81rem; color: rgba(255,255,255,0.38);
+      background: none; border: none; cursor: pointer;
+      text-align: left; padding: 0;
+      transition: color 0.3s; font-family: var(--font-body);
+    }
+    .footer-link-btn:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 960px; margin: 22px auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.74rem; color: rgba(255,255,255,0.18); flex-wrap: wrap; gap: 7px;
+    }
+    @media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; gap: 24px; } .footer { padding: 40px 18px 24px; } }
+
+    /* Page bottom spacing so bottom-nav doesn't overlap */
+    .page-bottom-pad { height: 80px; }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       TOP NAV
+  ══════════════════════════════════ -->
+  <nav class="topbar" id="topbar">
+    <div class="topbar-brand">KW<span>.</span></div>
+    <div class="topbar-pills" id="topPills">
+      <button class="topbar-pill active" onclick="goTo(0)">Home</button>
+      <button class="topbar-pill" onclick="goTo(1)">About</button>
+      <button class="topbar-pill" onclick="goTo(2)">Kampung Wai</button>
+      <button class="topbar-pill" onclick="goTo(3)">Role & Impact</button>
+      <button class="topbar-pill" onclick="goTo(4)">Packages</button>
+      <button class="topbar-pill" onclick="goTo(5)">Visit</button>
+    </div>
+    <button class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       PAGE 1 — HOME
+  ══════════════════════════════════ -->
+  <div class="page active" id="page-0">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-ripple-wrap">
+        <div class="ripple"></div><div class="ripple"></div>
+        <div class="ripple"></div><div class="ripple"></div>
+      </div>
+      <svg class="limestone-sil left" viewBox="0 0 280 360" fill="white">
+        <path d="M0 360 Q40 180 110 210 Q155 235 175 150 Q195 70 240 190 Q258 255 280 195 L280 360 Z"/>
+      </svg>
+      <svg class="limestone-sil right" viewBox="0 0 280 360" fill="white">
+        <path d="M0 360 Q40 180 110 210 Q155 235 175 150 Q195 70 240 190 Q258 255 280 195 L280 360 Z"/>
+      </svg>
+      <div class="hero-content">
+        <p class="hero-eyebrow">&#127988; Kampung Wai, Kuala Perlis, Perlis, Malaysia</p>
+        <h1 class="hero-title">Kamarulzaman<br/><em>bin Ahmad</em></h1>
+        <p class="hero-subtitle">Kayak Guide &amp; Person-in-Charge &middot; Gua Kelam Canal, Perlis</p>
+        <div class="hero-badges">
+          <span class="badge">&#128675; Kayak Specialist</span>
+          <span class="badge">&#127807; Gua Kelam Expert</span>
+          <span class="badge">&#11088; PIC – 1 Year</span>
+          <span class="badge">&#128100; Team of 16</span>
+        </div>
+        <div class="hero-btns">
+          <button class="hero-btn-nav" onclick="goTo(1)">Discover His Story</button>
+          <button class="btn-outline-white" onclick="goTo(2)">Explore Kampung Wai</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VILLAGE STRIP -->
+    <div class="village-strip">
+      <div class="strip-line"></div>
+      <p>
+        <strong>Kampung Wai</strong> — a breathtaking hidden gem in Kuala Perlis where
+        500-million-year-old limestone cliffs tower above emerald-green canal waters,
+        golden paddy fields stretch to the horizon, and Malaysia's longest navigable
+        water tunnel awaits beneath the earth.
+      </p>
+    </div>
+
+    <!-- STATS -->
+    <section class="stats-section">
+      <div class="stats-label">Kampung Wai Kayak — At a Glance</div>
+      <div class="stats-grid">
+        <div class="stat-card"><span class="stat-number">70<sup>+</sup></span><span class="stat-desc">Weekend Trips</span></div>
+        <div class="stat-card"><span class="stat-number">765<sup>m</sup></span><span class="stat-desc">Water Tunnel</span></div>
+        <div class="stat-card"><span class="stat-number">500<sup>M</sup></span><span class="stat-desc">Yrs Limestone</span></div>
+        <div class="stat-card"><span class="stat-number">16</span><span class="stat-desc">Team Members</span></div>
+      </div>
+    </section>
+
+    <!-- WELCOME -->
+    <div class="welcome-section">
+      <div>
+        <div class="kw-illustration">
+          <span class="kw-icon-big">&#127754;</span>
+          <div class="kw-caption">
+            <strong>Kampung Wai</strong>
+            Gua Kelam Canal, Perlis
+          </div>
+          <div class="kw-facts">
+            <div class="kw-fact"><span>3 km</span>Canal Route</div>
+            <div class="kw-fact"><span>765 m</span>Water Tunnel</div>
+            <div class="kw-fact"><span>22 km</span>Full Canal</div>
+            <div class="kw-fact"><span>~10 km</span>From Kangar</div>
+          </div>
+        </div>
+      </div>
+      <div class="welcome-text-col">
+        <span class="section-tag">WELCOME TO KAMPUNG WAI</span>
+        <h2>Perlis' Most Beautiful Hidden River</h2>
+        <p>Kampung Wai is a serene riverside village near Kuala Perlis, approximately 10 km from Kangar town. The village sits along a <strong>3-kilometre stretch</strong> of the Timah Tasoh Flood Diversion Canal — a 22-kilometre waterway connecting Empangan Timah Tasoh all the way to the sea at Muara Kuala Perlis.</p>
+        <p>The canal's water glows in a mesmerising <strong>blue-green hue</strong>, flanked by ancient limestone karst hills over 500 million years old. Rich flora, diverse fauna, and the gentle sound of flowing water make this one of Perlis' most treasured natural destinations.</p>
+        <p>Kamarulzaman bin Ahmad — as the PIC of the kayak operation here — is your gateway to experiencing this paradise from the water itself.</p>
+        <button class="btn-outline-green" onclick="goTo(1)">Meet Kamarulzaman &rarr;</button>
+      </div>
+    </div>
+
+    <div class="page-bottom-pad"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PAGE 2 — ABOUT
+  ══════════════════════════════════ -->
+  <div class="page" id="page-1">
+
+    <div class="page-header">
+      <div class="page-header-inner">
+        <span class="section-tag light">ABOUT HIM</span>
+        <h1>Background &amp; Story</h1>
+        <p>The man behind the paddle — a proud Perlis local bringing his homeland's beauty to the world.</p>
+      </div>
+    </div>
+
+    <section class="profile-section">
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-avatar">&#128675;</div>
+        <div>
+          <h3>Kamarulzaman bin Ahmad</h3>
+          <p class="profile-role">Kayak Guide &amp; Person-in-Charge (PIC) · Kampung Wai, Perlis</p>
+          <div class="profile-tags">
+            <span class="profile-tag">&#128100; Age: 36</span>
+            <span class="profile-tag">&#127988; Asal: Perlis</span>
+            <span class="profile-tag">&#128149; Berkahwin</span>
+            <span class="profile-tag">&#128106; 3 Orang Anak (2L, 1P)</span>
+            <span class="profile-tag">&#9883; PIC – 1 Tahun</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Grid -->
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-card-icon">&#127968;</div>
+          <h3>Personal Background</h3>
+          <p>Kamarulzaman bin Ahmad is a 36-year-old local man born and raised in Perlis — Malaysia's smallest and most northerly state. He is a proud family man with a devoted wife and three children: two sons and one daughter.</p>
+          <p>Growing up in Perlis, he developed a deep and natural connection to the state's landscapes — the limestone ranges, the green rivers, the golden paddy fields, and the quiet beauty of village life near the Thai border.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">&#128218;</div>
+          <h3>His Career as PIC</h3>
+          <p>Approximately one year ago, Kamarulzaman took on the role of Person-in-Charge (PIC) at the Kampung Wai kayak operation — a position of leadership at the centre of one of Perlis' fastest-growing eco-tourism attractions.</p>
+          <p>As PIC, he oversees everything: daily operations, team coordination, guest safety, trip scheduling, and the overall visitor experience. Under his leadership, the operation has gained a strong reputation for professionalism, safety, and warmth.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">&#127757;</div>
+          <h3>About Kampung Wai Village</h3>
+          <p>Kampung Wai sits approximately 3 km from Kuala Perlis town and close to the Thai border. The village is surrounded by the Nakawan limestone range and vast paddy fields, and is accessed via a small road crossing a bridge over the canal.</p>
+          <p>The canal is part of the Projek Lencongan Banjir Barat Timah Tasoh — a 22-kilometre flood diversion project that unexpectedly created one of Malaysia's most beautiful recreational waterways.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">&#127748;</div>
+          <h3>Perlis — Malaysia's Smallest State</h3>
+          <p>Perlis covers just 821 km² but is rich in character — known for its vast sugar cane fields, ancient limestone caves, royal heritage, and a border culture shaped by proximity to Thailand. The state capital is Kangar, with Kuala Perlis as the main port.</p>
+          <p>Perlis is home to Gua Kelam, the Timah Tasoh Lake, Wang Kelian border market, and now Kampung Wai — all part of the Visit Perlis Year 2024–2026 eco-tourism showcase.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">&#127939;</div>
+          <h3>The Gua Kelam Connection</h3>
+          <p>The kayak route is intimately connected to Gua Kelam (Cave of Darkness) in Kaki Bukit — one of Perlis' most iconic attractions. During the colonial tin-mining era, Gua Kelam's 370-metre cavern was used to transport tin ore along the underground river.</p>
+          <p>The 765-metre water tunnel at Tebing Tinggi — the highlight of the kayak experience — is a separate passage through the Nakawan range connecting Kampung Wai to Kampung Tebing Tinggi in Bintong.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">&#128106;</div>
+          <h3>Family, Faith &amp; Community</h3>
+          <p>Kamarulzaman sees his work as more than employment — it is a mission. By leading the operation, he provides livelihoods for 16 local families, contributes to Perlis' tourism economy, and helps preserve the natural environment for future generations.</p>
+          <p>He is well-regarded by his team for calm leadership, attention to safety, and genuine care for every visitor's experience. To him, sharing the beauty of Kampung Wai is a source of deep pride and purpose.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section">
+      <div class="timeline-inner">
+        <span class="section-tag center">HIS JOURNEY</span>
+        <h2 class="section-title center">Milestones</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Born in Perlis</span>
+            <p>Kamarulzaman grew up in Perlis, developing a deep love for the state's rivers, limestone hills, paddy fields, and village life from a young age.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Family Man</span>
+            <p>Married and built a family of five — his wife and three children are his greatest source of strength, joy, and motivation every single day.</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2022 — Kampung Wai Opens</span>
+            <p>The Perlis Eco-Tourism and Recreation Club formally introduces kayaking at Kampung Wai, drawing visitors from across Malaysia for the first time.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">~1 Year Ago — Joins as PIC</span>
+            <p>Kamarulzaman joins the growing operation as Person-in-Charge, stepping into a leadership role combining outdoor passion with community responsibility.</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2024–2026 — Visit Perlis Year</span>
+            <p>Kampung Wai is officially featured in the Visit Perlis Year 2024–2026 programme, drawing increased national and international attention.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Today</span>
+            <p>Leads a team of 16, managing 70+ weekend trips and 10+ weekday trips, championing Perlis' eco-tourism future — one paddle stroke at a time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-bottom-pad"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PAGE 3 — KAMPUNG WAI
+  ══════════════════════════════════ -->
+  <div class="page" id="page-2">
+
+    <div class="page-header">
+      <div class="page-header-inner">
+        <span class="section-tag light">THE DESTINATION</span>
+        <h1>Kampung Wai — In Depth</h1>
+        <p>Beyond the kayak adventure, Kampung Wai is a living village rich with engineering history, ecological wonder, cultural warmth, and natural beauty.</p>
+      </div>
+    </div>
+
+    <!-- HIGHLIGHTS -->
+    <section class="highlights-section">
+      <span class="section-tag">WHAT MAKES IT SPECIAL</span>
+      <h2 class="section-title" style="margin-bottom:12px;">Natural Highlights</h2>
+      <p class="highlights-intro">From ancient limestone geology to crystalline waters, golden paddy fields, and the mystifying underground tunnel — Kampung Wai is where nature, adventure, and heritage converge.</p>
+      <div class="highlight-cards">
+        <div class="hl-card">
+          <div class="hl-card-top">&#128687;</div>
+          <div class="hl-card-body">
+            <h3>Malaysia's Longest Water Tunnel — 765 Metres</h3>
+            <p>The signature experience: paddling through the 765-metre water tunnel carved through Bukit Tebing Tinggi. Kayakers pass through in near-complete darkness and emerge into open sunlight — an experience unlike any other in the country.</p>
+          </div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-card-top">&#128137;</div>
+          <div class="hl-card-body">
+            <h3>Emerald-Green Canal Waters</h3>
+            <p>The canal is celebrated for its striking blue-green water colour caused by minerals filtered through surrounding limestone. The water is calm, clear, and so still that the limestone cliffs reflect perfectly on its surface.</p>
+          </div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-card-top">&#127807;</div>
+          <div class="hl-card-body">
+            <h3>Rich Flora &amp; Fauna Along the Banks</h3>
+            <p>The canal banks are lined with tropical vegetation — mangrove trees, wild ferns, hanging creepers. The area supports diverse wildlife: freshwater fish, kingfishers, monitor lizards, and numerous bird species including migratory visitors.</p>
+          </div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-card-top">&#127540;</div>
+          <div class="hl-card-body">
+            <h3>Golden Paddy Fields of Perlis</h3>
+            <p>Surrounding Kampung Wai are Perlis' vast paddy fields — the agricultural heart of Malaysia's smallest state. The landscape shifts between vivid green planting season and golden harvest, creating one of northern Malaysia's most dramatic panoramas.</p>
+          </div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-card-top">&#127963;</div>
+          <div class="hl-card-body">
+            <h3>Dataran Kampung Wai — Community Hub</h3>
+            <p>The lively riverside plaza is the launch point for all kayak trips and a gathering space for locals and visitors alike. Stalls sell local snacks, cold drinks, and Perlis delicacies. On weekends, dozens of kayakers prepare to take to the water.</p>
+          </div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-card-top">&#128756;</div>
+          <div class="hl-card-body">
+            <h3>500-Million-Year-Old Limestone Karst</h3>
+            <p>The towering limestone hills flanking the canal are among the oldest geological formations in Malaysia. Part of the Nakawan Range, these dramatic karst formations create a breathtaking natural corridor along the waterway.</p>
+          </div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-card-top">&#128247;</div>
+          <div class="hl-card-body">
+            <h3>A Photographer's Dream Destination</h3>
+            <p>Kampung Wai has gone viral on social media for its extraordinary scenery. The combination of limestone backdrops, glowing emerald water, colourful kayaks, and the eerie beauty of the tunnel makes every angle a potential masterpiece.</p>
+          </div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-card-top">&#128306;</div>
+          <div class="hl-card-body">
+            <h3>Swimming in the Clear Canal</h3>
+            <p>Beyond kayaking, visitors swim in designated areas of the canal — the water is clean and refreshing. Swimming after the Tebing Tinggi kayak trip has become a popular tradition, offering a chance to cool down and fully immerse in the natural environment.</p>
+          </div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-card-top">&#127790;</div>
+          <div class="hl-card-body">
+            <h3>Eco-Tourism &amp; Visit Perlis 2024–2026</h3>
+            <p>Since kayaking was introduced in 2022, Kampung Wai has transformed into one of Perlis' flagship eco-tourism sites, officially featured in the Visit Perlis Year 2024–2026 programme, attracting visitors from all over Malaysia and beyond.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEEP DIVE -->
+    <section class="deep-dive-section">
+      <div class="deep-dive-inner">
+        <span class="section-tag">KNOW THE PLACE</span>
+        <h2 class="section-title" style="margin-bottom:12px;">Behind the Scenery</h2>
+        <p class="deep-dive-intro">Kampung Wai rewards curious visitors who look deeper — from its accidental engineering origins to its viral social media fame and community tourism model.</p>
+        <div class="deep-blocks">
+          <div class="deep-block">
+            <div class="deep-block-icon">&#127754;</div>
+            <h3>The Canal's Origin Story</h3>
+            <p>The Kampung Wai canal was not built for tourism — it is part of the Projek Lencongan Banjir Barat Timah Tasoh, a 22-km flood diversion canal built to redirect excess water from Empangan Timah Tasoh to the sea at Kuala Perlis. This engineering project unintentionally created one of Malaysia's most scenic waterways, now beloved by paddlers nationwide.</p>
+          </div>
+          <div class="deep-block">
+            <div class="deep-block-icon">&#128137;</div>
+            <h3>Crystal-Clear Water Quality</h3>
+            <p>The canal's water is famously clean and clear. Its iconic blue-green colour is produced by the limestone mineral composition of the surrounding geology, which naturally filters and colours the water. Visibility is high enough that paddlers can often see the canal floor from their kayaks.</p>
+          </div>
+          <div class="deep-block">
+            <div class="deep-block-icon">&#127540;</div>
+            <h3>Paddy Field Landscapes</h3>
+            <p>Perlis produces some of Malaysia's finest rice, and the paddy fields surrounding Kampung Wai are spectacular year-round. In planting season, vivid green shoots fill the paddies as far as the eye can see. At harvest time, fields turn a deep golden-yellow. From the bridge near Kampung Wai, these fields frame the limestone hills in one of northern Malaysia's most dramatic panoramas.</p>
+          </div>
+          <div class="deep-block">
+            <div class="deep-block-icon">&#127869;</div>
+            <h3>Local Food &amp; Roadside Stalls</h3>
+            <p>At Dataran Kampung Wai, local residents have established food and beverage stalls offering authentic Perlis village cooking — cold drinks, local snacks, simple rice dishes, and fresh coconut water. These stalls generate important supplementary income for local families and give visitors a chance to rest and enjoy riverside hospitality.</p>
+          </div>
+          <div class="deep-block">
+            <div class="deep-block-icon">&#128247;</div>
+            <h3>Social Media Fame</h3>
+            <p>Kampung Wai went viral on TikTok, Instagram, and YouTube as travellers began sharing footage of the emerald canal, dramatic limestone corridor, and the eerie beauty of the water tunnel. This organic growth has been transformational for Perlis tourism, drawing visitors who had never considered the state before.</p>
+          </div>
+          <div class="deep-block">
+            <div class="deep-block-icon">&#127790;</div>
+            <h3>Perlis Eco-Tourism Club</h3>
+            <p>The Kampung Wai kayak operation is managed under the Perlis Eco-Tourism and Recreation Club (Kelab Eko-Pelancongan dan Rekreasi Perlis). Established to bring sustainable tourism benefits to Perlis' natural sites, the club coordinates kayaking activities, sets pricing, manages safety standards, and works to improve the visitor experience continuously.</p>
+          </div>
+          <div class="deep-block">
+            <div class="deep-block-icon">&#127942;</div>
+            <h3>Visit Perlis Year 2024–2026</h3>
+            <p>Kampung Wai is officially featured as a key destination in the Visit Perlis Year 2024–2026 (Tahun Melawat Perlis) initiative by Tourism Perlis. This government-backed programme promotes the state's natural, cultural, and heritage attractions to domestic and international tourists.</p>
+          </div>
+          <div class="deep-block">
+            <div class="deep-block-icon">&#128306;</div>
+            <h3>Swimming &amp; Riverside Recreation</h3>
+            <p>Kayaking is not the only activity — swimming in the canal's clear, refreshing water is enjoyed by visitors of all ages. The Dataran also serves for riverside picnics, fish feeding from the banks, drone photography, and simply sitting by the water. Its peaceful, natural atmosphere makes it an ideal "healing" retreat from city life.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-bottom-pad"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PAGE 4 — ROLE & CONTRIBUTION
+  ══════════════════════════════════ -->
+  <div class="page" id="page-3">
+
+    <div class="page-header">
+      <div class="page-header-inner">
+        <span class="section-tag light">ROLE &amp; CONTRIBUTION</span>
+        <h1>Leading the Waters of Perlis</h1>
+        <p>How Kamarulzaman shapes Kampung Wai's eco-tourism future, one paddle stroke at a time.</p>
+      </div>
+    </div>
+
+    <section class="role-section">
+      <div class="role-intro">
+        <span class="section-tag">HIS ROLE</span>
+        <h2>Person-in-Charge (PIC)<br/>Kampung Wai Kayak Operation</h2>
+        <p>As PIC, Kamarulzaman carries full responsibility for operations, team leadership, visitor safety, and community development — making him indispensable to the success of one of Perlis' most exciting eco-tourism attractions.</p>
+      </div>
+      <div class="role-cards">
+        <div class="role-card">
+          <div class="role-num">01</div>
+          <h3>Operations Management</h3>
+          <p>Kamarulzaman oversees all daily operations of the kayak service — managing trip schedules for both packages, coordinating kayak allocations (2 passengers per kayak), and ensuring smooth service from 9:00 am to 7:30 pm on weekends. During school holidays, he scales operations to manage as many as 15 trips in a single day.</p>
+        </div>
+        <div class="role-card">
+          <div class="role-num">02</div>
+          <h3>Team Leadership</h3>
+          <p>He leads 16 workers — 10 experienced kayak guides and 5 to 6 support crew — coordinating daily responsibilities, briefing guides on safety and routes, and maintaining consistent service quality regardless of visitor volume. His calm, respected leadership style has built a cohesive and professional team.</p>
+        </div>
+        <div class="role-card">
+          <div class="role-num">03</div>
+          <h3>Safety &amp; Compliance</h3>
+          <p>Safety is paramount on the Kampung Wai canal, especially during the 765-metre tunnel passage. Kamarulzaman enforces strict protocols: mandatory life jackets, pre-trip safety briefings, route risk assessments, and emergency procedures. His vigilance ensures every trip — for beginners and experienced paddlers alike — remains safe and enjoyable.</p>
+        </div>
+        <div class="role-card">
+          <div class="role-num">04</div>
+          <h3>Visitor Experience</h3>
+          <p>Kamarulzaman ensures every visitor has a memorable experience on the water. His guides share historical and geological facts about Banjaran Nakawan, the canal's origins, and local wildlife. He tailors experiences for different groups — educational for school excursions, scenic for tourist groups — ensuring satisfaction and encouraging repeat visits.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTRIBUTION -->
+    <section class="contrib-section">
+      <div class="contrib-inner">
+        <div style="text-align:center;">
+          <span class="section-tag center">CONTRIBUTION</span>
+          <h2 class="section-title center">Impact on Perlis &amp; the Community</h2>
+        </div>
+        <div class="contrib-blocks">
+          <div class="contrib-block contrib-block-dark">
+            <div class="contrib-icon">&#127807;</div>
+            <h3>Promoting Kampung Wai Nationally</h3>
+            <p>Since its introduction in 2022, Kampung Wai's popularity has grown dramatically — driven by the quality of the operation Kamarulzaman manages. Weekend visitors arrive from Kedah, Penang, Kuala Lumpur, and across Malaysia.</p>
+            <p>His work directly supports the Visit Perlis Year 2024–2026 initiative, making Kampung Wai one of the state's most prominent eco-tourism flagship destinations.</p>
+          </div>
+          <div class="contrib-block">
+            <div class="contrib-icon">&#128184;</div>
+            <h3>Creating Local Employment</h3>
+            <p>The kayak operation under Kamarulzaman's management directly employs 16 local workers from Kampung Wai and surrounding villages. For many, this is a primary or supplementary income that was unavailable before eco-tourism arrived.</p>
+            <p>Indirectly, his operation supports the local food stall economy at Dataran Kampung Wai, where local residents earn additional income selling refreshments to visitors.</p>
+          </div>
+          <div class="contrib-block contrib-block-dark">
+            <div class="contrib-icon">&#127758;</div>
+            <h3>Environmental Stewardship</h3>
+            <p>The emerald waters of Kampung Wai's canal are a natural treasure that must be carefully protected. Kamarulzaman promotes responsible eco-tourism behaviour — strict no-littering rules, no disturbance of wildlife, and minimal environmental impact.</p>
+            <p>During every trip, guides educate visitors about the limestone ecosystem, the 500-million-year-old geology, and the importance of conservation.</p>
+          </div>
+          <div class="contrib-block">
+            <div class="contrib-icon">&#127891;</div>
+            <h3>Youth &amp; School Programmes</h3>
+            <p>During school holiday seasons, Kampung Wai sees its highest visitor volumes. Kamarulzaman coordinates special group sessions — up to 15 trips per day — to accommodate student groups on outdoor education excursions.</p>
+            <p>Many schools from across northern Malaysia now include Kampung Wai in their annual excursion calendars, cementing its role as an outdoor education resource.</p>
+          </div>
+          <div class="contrib-block">
+            <div class="contrib-icon">&#128205;</div>
+            <h3>Putting Perlis on the Map</h3>
+            <p>Perlis is often overlooked compared to larger Malaysian states — but Kampung Wai is changing that rapidly. Through viral social media exposure and growing word-of-mouth, the destination now appears regularly on Malaysian travel lists, tourism blogs, and government promotional materials.</p>
+            <p>Kamarulzaman's consistent, high-quality service converts first-time visitors into returning advocates, building Perlis' reputation as a world-class eco-tourism state.</p>
+          </div>
+          <div class="contrib-block contrib-block-dark">
+            <div class="contrib-icon">&#11088;</div>
+            <h3>A Model for Community Tourism</h3>
+            <p>Kamarulzaman represents what becomes possible when a local individual embraces eco-tourism, leads with care, and commits to uplifting his community. He demonstrates that sustainable, community-driven tourism can provide dignified livelihoods, preserve natural environments, and share a place's beauty with the world.</p>
+            <p>His story is one of pride, dedication, and deep love for Perlis — a reminder that the most extraordinary journeys begin from the very place you call home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-bottom-pad"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PAGE 5 — PACKAGES
+  ══════════════════════════════════ -->
+  <div class="page" id="page-4">
+
+    <div class="page-header">
+      <div class="page-header-inner">
+        <span class="section-tag light">SERVICES OFFERED</span>
+        <h1>Kayak Packages</h1>
+        <p>Two packages designed for every visitor — from those seeking Malaysia's longest water tunnel to families wanting a peaceful river paddle.</p>
+      </div>
+    </div>
+
+    <!-- PACKAGES GRID -->
+    <section class="packages-section">
+      <div class="packages-inner">
+        <span class="section-tag light center">CHOOSE YOUR ADVENTURE</span>
+        <p class="section-intro">Every kayak departs from Dataran Kampung Wai with a certified guide. Safety equipment provided on all trips. 2 paddlers per kayak.</p>
+        <div class="packages-grid">
+          <div class="pkg-card pkg-featured">
+            <div class="pkg-badge">Most Popular</div>
+            <div class="pkg-icon">&#128675;</div>
+            <h3>Tebing Tinggi Package</h3>
+            <div class="pkg-price">
+              <span class="pkg-price-main">RM 69</span>
+              <span class="pkg-price-sub"> / person</span>
+            </div>
+            <p class="pkg-desc">The full experience — paddle from Kampung Wai through the 765-metre water tunnel all the way to Tebing Tinggi, Bintong. Malaysia's longest navigable water tunnel awaits.</p>
+            <div class="pkg-features">
+              <div class="pkg-feature">Kampung Wai to Tebing Tinggi (Bintong)</div>
+              <div class="pkg-feature">Through 765m water tunnel (near-darkness)</div>
+              <div class="pkg-feature">2 paddlers per kayak with certified guide</div>
+              <div class="pkg-feature">Life jacket &amp; safety equipment included</div>
+              <div class="pkg-feature">Swimming opportunity in clear canal</div>
+              <div class="pkg-feature">Available daily (see operating hours)</div>
+            </div>
+          </div>
+          <div class="pkg-card">
+            <div class="pkg-icon">&#127774;</div>
+            <h3>Santai Package</h3>
+            <div class="pkg-price">
+              <span class="pkg-price-main">RM 10</span>
+              <span class="pkg-price-sub"> / person</span>
+            </div>
+            <p class="pkg-desc">A relaxed 30-minute paddle along the beautiful emerald canal to the entrance of the Gua Kelam tunnel. Perfect for beginners, families, and those wanting a peaceful scenic experience.</p>
+            <div class="pkg-features">
+              <div class="pkg-feature">Canal to Gua Kelam tunnel entrance</div>
+              <div class="pkg-feature">2 paddlers per kayak</div>
+              <div class="pkg-feature">Calm, beginner-friendly waters</div>
+              <div class="pkg-feature">Approx. 30 minutes duration</div>
+              <div class="pkg-feature">Family &amp; child friendly</div>
+              <div class="pkg-feature">No prior experience required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOURS -->
+    <div class="hours-banner">
+      <div class="hours-item"><h3>&#128337; Operating Hours</h3><p>Closed every Monday</p></div>
+      <div class="hours-divider"></div>
+      <div class="hours-item"><h3>Saturday &amp; Sunday</h3><p>9:00 am – 7:30 pm</p></div>
+      <div class="hours-divider"></div>
+      <div class="hours-item"><h3>Tuesday – Friday</h3><p>2:00 pm – 7:30 pm</p></div>
+      <div class="hours-divider"></div>
+      <div class="hours-item"><h3>&#128205; Location</h3><p>Kampung Wai, Kuala Perlis, Perlis</p></div>
+    </div>
+
+    <!-- BOOKING TIPS -->
+    <section class="booking-section">
+      <span class="section-tag">PLANNING YOUR VISIT</span>
+      <h2>What to Know Before You Go</h2>
+      <p>A few helpful tips to make your Kampung Wai kayak experience smooth and unforgettable.</p>
+      <div class="booking-cards">
+        <div class="booking-card">
+          <h4>&#128337; Best Time to Visit</h4>
+          <p>Weekday afternoons (Tue–Fri) are quieter. School holidays and weekends are busiest — arrive early to secure your spot. Avoid Mondays (closed).</p>
+        </div>
+        <div class="booking-card">
+          <h4>&#128230; What to Bring</h4>
+          <p>Wear clothes you don't mind getting wet. Bring a waterproof bag or case for your phone. Sunscreen, a hat, and water shoes are recommended.</p>
+        </div>
+        <div class="booking-card">
+          <h4>&#128100; Group Bookings</h4>
+          <p>School groups and large parties should coordinate in advance. During school holidays, Kamarulzaman's team can manage up to 15 trips per day for large groups.</p>
+        </div>
+        <div class="booking-card">
+          <h4>&#128183; Pricing &amp; Payment</h4>
+          <p>Tebing Tinggi Package: RM 69/person. Santai Package: RM 10/person. Cash is recommended. Confirm pricing directly at Dataran Kampung Wai on arrival.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-bottom-pad"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PAGE 6 — VISIT / CONTACT
+  ══════════════════════════════════ -->
+  <div class="page" id="page-5">
+
+    <div class="cta-hero">
+      <span class="section-tag light center">PLAN YOUR VISIT</span>
+      <h2>Experience Kampung Wai</h2>
+      <p>Come paddle the emerald canal, pass through Malaysia's longest water tunnel, and discover why Kampung Wai is Perlis' most beloved hidden gem.</p>
+      <div class="cta-btns">
+        <button class="btn-primary" onclick="goTo(4)">See Packages &amp; Prices</button>
+        <button class="btn-outline-white" onclick="goTo(0)">Back to Home</button>
+      </div>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <section class="contact-section">
+      <span class="section-tag center">FIND US</span>
+      <h2 class="section-title center" style="margin-bottom:38px;">Getting There &amp; Getting In Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">&#128205;</div>
+          <h3>Location</h3>
+          <p>Dataran Kampung Wai<br/>Kampung Wai, Kuala Perlis<br/>Perlis, Malaysia</p>
+          <p style="margin-top:8px;font-size:0.78rem;color:var(--emerald);">~10 km from Kangar town<br/>~3 km from Kuala Perlis</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">&#128337;</div>
+          <h3>Operating Hours</h3>
+          <p><strong>Sat &amp; Sun:</strong> 9:00 am – 7:30 pm</p>
+          <p><strong>Tue – Fri:</strong> 2:00 pm – 7:30 pm</p>
+          <p style="margin-top:8px;color:var(--emerald);font-size:0.82rem;">Closed every Monday</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">&#127908;</div>
+          <h3>Person-in-Charge</h3>
+          <p>Kamarulzaman bin Ahmad</p>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-top:6px;">For group bookings, school excursions, or special arrangements, contact directly at the Dataran.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP PLACEHOLDER -->
+    <div class="map-section">
+      <span class="section-tag">MAP</span>
+      <h2 class="section-title" style="margin-bottom:18px;">Find Kampung Wai</h2>
+      <div class="map-embed">
+        <div style="text-align:center;padding:24px;">
+          <div style="font-size:2rem;margin-bottom:12px;">&#128205;</div>
+          <p><strong>Kampung Wai, Kuala Perlis, Perlis</strong></p>
+          <p style="font-size:0.8rem;margin-top:6px;">Search "Kampung Wai Perlis" or "Dataran Kampung Wai" on Google Maps for turn-by-turn directions from your location.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW TO GET THERE -->
+    <section class="booking-section" style="max-width:820px;">
+      <span class="section-tag">DIRECTIONS</span>
+      <h2>How to Get There</h2>
+      <p>Kampung Wai is accessible by car, ride-hailing app, or public transport from Kangar and Kuala Perlis.</p>
+      <div class="booking-cards">
+        <div class="booking-card">
+          <h4>&#128664; By Car</h4>
+          <p>From Kangar: approximately 20–25 minutes via Jalan Kuala Perlis. From Alor Setar: approximately 50 minutes via the North-South Expressway (R14) exit.</p>
+        </div>
+        <div class="booking-card">
+          <h4>&#128652; By Bus / Public Transport</h4>
+          <p>Take a bus to Kuala Perlis, then hire a local taxi or GrabCar for the final 3 km to Kampung Wai. Ask locals for "Dataran Kampung Wai" directions.</p>
+        </div>
+        <div class="booking-card">
+          <h4>&#9992;&#65039; From KL / Penang</h4>
+          <p>Fly into Alor Setar (AOR) or Langkawi (LGK) then drive to Perlis. Alternatively, take the ETS train to Arau station and proceed by taxi.</p>
+        </div>
+        <div class="booking-card">
+          <h4>&#128248; Photography Tips</h4>
+          <p>Golden hour (late afternoon) offers the most breathtaking light on the limestone corridor. Bring a waterproof case — the emerald water is irresistibly close throughout the trip.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">KW<span>.</span></div>
+          <p class="footer-tagline">Kampung Wai Kayak<br/>Kuala Perlis, Perlis, Malaysia</p>
+        </div>
+        <div class="footer-col">
+          <h4>About This Website</h4>
+          <p>This personal website presents Kamarulzaman bin Ahmad — Person-in-Charge of the Kampung Wai Kayak operation in Perlis, Malaysia. Built as a multi-page HTML website for the SMM30503 Web Design &amp; Development course assignment, showcasing a real individual contributing to Perlis' product and service landscape.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Navigation</h4>
+          <div class="footer-links">
+            <button class="footer-link-btn" onclick="goTo(0)">Home</button>
+            <button class="footer-link-btn" onclick="goTo(1)">About Kamarulzaman</button>
+            <button class="footer-link-btn" onclick="goTo(2)">Kampung Wai</button>
+            <button class="footer-link-btn" onclick="goTo(3)">Role &amp; Contribution</button>
+            <button class="footer-link-btn" onclick="goTo(4)">Packages</button>
+            <button class="footer-link-btn" onclick="goTo(5)">Visit Us</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Kampung Wai Kayak. All rights reserved.</span>
+        <span>SMM30503 Web Design &amp; Development · Assignment 1</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ══════════════════════════════════
+       BOTTOM NAVIGATOR
+  ══════════════════════════════════ -->
+  <div class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>
+      &#8592; <span id="prevLabel">Previous</span>
+    </button>
+
+    <div class="page-indicator" id="pageIndicator">
+      <div class="page-dot active" onclick="goTo(0)" title="Home"></div>
+      <div class="page-dot" onclick="goTo(1)" title="About"></div>
+      <div class="page-dot" onclick="goTo(2)" title="Kampung Wai"></div>
+      <div class="page-dot" onclick="goTo(3)" title="Role & Impact"></div>
+      <div class="page-dot" onclick="goTo(4)" title="Packages"></div>
+      <div class="page-dot" onclick="goTo(5)" title="Visit"></div>
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)">
+      <span id="nextLabel">Next</span> &#8594;
+    </button>
+  </div>
+
+  <script>
+    const PAGES = ['Home', 'About', 'Kampung Wai', 'Role & Impact', 'Packages', 'Visit'];
+    let current = 0;
+
+    function goTo(index) {
+      if (index < 0 || index >= PAGES.length) return;
+
+      // Hide current page
+      document.getElementById('page-' + current).classList.remove('active');
+      document.querySelectorAll('.topbar-pill')[current].classList.remove('active');
+      document.querySelectorAll('.page-dot')[current].classList.remove('active');
+
+      current = index;
+
+      // Show new page
+      const newPage = document.getElementById('page-' + current);
+      newPage.classList.add('active');
+      newPage.scrollTop = 0;
+      document.querySelectorAll('.topbar-pill')[current].classList.add('active');
+      document.querySelectorAll('.page-dot')[current].classList.add('active');
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+
+      // Update nav buttons
+      updateNav();
+
+      // Close mobile menu if open
+      document.getElementById('topPills').classList.remove('open');
+    }
+
+    function navigate(dir) {
+      goTo(current + dir);
+    }
+
+    function updateNav() {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const prevLabel = document.getElementById('prevLabel');
+      const nextLabel = document.getElementById('nextLabel');
+
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === PAGES.length - 1;
+
+      prevLabel.textContent = current > 0 ? PAGES[current - 1] : 'Previous';
+      nextLabel.textContent = current < PAGES.length - 1 ? PAGES[current + 1] : 'Next';
+    }
+
+    function toggleMobileNav() {
+      document.getElementById('topPills').classList.toggle('open');
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+    });
+
+    // Initialize
+    updateNav();
+  </script>
+</body>
+</html>
